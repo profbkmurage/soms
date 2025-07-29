@@ -67,7 +67,7 @@ const App = () => {
           }
         />
         <Route
-          path='/signUp'
+          path='/signp'
           element={
             <PrivateRouteForSuperAdmin>
               <SignUp />
