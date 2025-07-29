@@ -5,7 +5,7 @@ import { db } from './firebase/config'
 
 import Login from './pages/Login'
 import SignUp from './pages/signUp'
-import Settings from './pages/settings'
+gitimport Settings from './pages/settings'
 
 import { useAuth } from './context/AuthContext'
 import Navbar from './components/Navbar'
