@@ -1,0 +1,74 @@
+/* Navbar.css – hover styles per <li> item */
+
+.nav-hover-1:hover {
+    background-color: #ffc107;
+    /* yellow */
+}
+
+.nav-hover-1:hover .nav-link {
+    color: #000 !important;
+}
+
+.nav-hover-2:hover {
+    background-color: #17a2b8;
+    /* cyan */
+}
+
+.nav-hover-2:hover .nav-link {
+    color: #fff !important;
+}
+
+.nav-hover-3:hover {
+    background-color: #28a745;
+    /* green */
+}
+
+.nav-hover-3:hover .nav-link {
+    color: #fff !important;
+}
+
+.nav-hover-4:hover {
+    background-color: #6610f2;
+    /* purple */
+}
+
+.nav-hover-4:hover .nav-link {
+    color: #fff !important;
+}
+
+.nav-hover-5:hover {
+    background-color: #fd7e14;
+    /* orange */
+}
+
+.nav-hover-5:hover .nav-link {
+    color: #000 !important;
+}
+
+.nav-hover-6:hover {
+    background-color: #20c997;
+    /* teal */
+}
+
+.nav-hover-6:hover .nav-link {
+    color: #fff !important;
+}
+
+.nav-hover-7:hover {
+    background-color: #dc3545;
+    /* red */
+}
+
+.nav-hover-7:hover .nav-link {
+    color: #fff !important;
+}
+
+.nav-hover-8:hover {
+    background-color: #343a40;
+    /* dark */
+}
+
+.nav-hover-8:hover .nav-link {
+    color: #ffc107 !important;
+    /* yellow text */
+}

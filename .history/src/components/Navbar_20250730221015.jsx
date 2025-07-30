@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import useSuperAdmin from '../services/useSuperAdmin'
-import './Navbar.css' //  Import custom styles here
+import './Navbar.css' // ⬅️ Import custom styles here
 
 const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
   const navigate = useNavigate()

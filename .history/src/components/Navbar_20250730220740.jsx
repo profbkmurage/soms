@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import useSuperAdmin from '../services/useSuperAdmin'
-import './Navbar.css' //  Import custom styles here
 
 const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
   const navigate = useNavigate()
@@ -36,7 +35,7 @@ const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
         >
           <ul className='navbar-nav ms-auto'>
             {!currentUser && (
-              <li className='nav-item nav-hover-1'>
+              <li className='nav-item'>
                 <Link className='nav-link' to='/login'>
                   Login
                 </Link>
@@ -46,20 +45,20 @@ const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
             {currentUser && (
               <>
                 {isSuperAdmin && (
-                  <li className='nav-item nav-hover-2'>
+                  <li className='nav-item'>
                     <Link className='nav-link' to='/settings'>
                       Settings
                     </Link>
                   </li>
                 )}
 
-                <li className='nav-item nav-hover-3'>
+                <li className='nav-item'>
                   <Link className='nav-link' to='/New-Product'>
                     New Product
                   </Link>
                 </li>
 
-                <li className='nav-item nav-hover-4'>
+                <li className='nav-item'>
                   <span
                     className='nav-link'
                     role='button'
@@ -70,7 +69,7 @@ const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
                   </span>
                 </li>
 
-                <li className='nav-item nav-hover-5'>
+                <li className='nav-item'>
                   <span
                     className='nav-link'
                     role='button'
@@ -81,13 +80,13 @@ const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
                   </span>
                 </li>
 
-                <li className='nav-item nav-hover-6'>
+                <li className='nav-item'>
                   <Link className='nav-link' to='/cart'>
                     View Cart
                   </Link>
                 </li>
 
-                <li className='nav-item nav-hover-7'>
+                <li className='nav-item'>
                   <span
                     className='nav-link'
                     role='button'
@@ -98,9 +97,9 @@ const Navbar = ({ editMode, addStockMode, onToggleEdit, onToggleAddStock }) => {
                   </span>
                 </li>
 
-                <li className='nav-item nav-hover-8'>
+                <li className='nav-item'>
                   <span
-                    className='nav-link'
+                    className='nav-link text-danger'
                     role='button'
                     onClick={logout}
                     style={{ cursor: 'pointer' }}
