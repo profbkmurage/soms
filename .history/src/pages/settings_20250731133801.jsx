@@ -130,7 +130,7 @@ const Settings = () => {
         <h4>Users</h4>
         <button
           className='btn btn-success mb-2'
-          onClick={() => navigate('/SignIn')}
+          onClick={() => navigate('/')}
         >
           Create New User
         </button>

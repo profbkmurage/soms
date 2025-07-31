@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from './firebase/config'
 
 import Login from './pages/Login'
-import SignUp from 'pages/SignIn'
+import SignUp from 'pages/Sign'
 import Settings from './pages/settings'
 
 import { useAuth } from './context/AuthContext'
