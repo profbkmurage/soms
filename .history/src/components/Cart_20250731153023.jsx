@@ -57,9 +57,9 @@ const Cart = () => {
 
     try {
       await setDoc(doc(db, 'receipts', receiptId), receiptData)
-      console.log(`Receipt ${receiptId} saved to Firestore`)
+      console.log(`✅ Receipt ${receiptId} saved to Firestore`)
     } catch (error) {
-      console.error('Failed to save receipt:', error)
+      console.error('❌Failed to save receipt:', error)
     }
   }
 
