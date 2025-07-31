@@ -66,14 +66,14 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        {/* <Route
+        <Route
           path='/SignIn'
           element={
             <PrivateRouteForSuperAdmin>
               <SignIn />
             </PrivateRouteForSuperAdmin>
           }
-        /> */}
+        />
         console.log('Is superadmin?', isSuperadmin)
         <Route
           path='/settings'
