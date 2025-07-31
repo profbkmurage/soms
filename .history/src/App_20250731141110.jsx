@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { collection, getDocs } from 'firebase/firestore'
@@ -6,6 +5,7 @@ import { db } from './firebase/config'
 
 import Login from './pages/Login'
 import CreateAccount from './components/CreateAccount'
+// import SignIn from 'pages/SignIn'
 import Settings from './pages/settings'
 
 import { useAuth } from './context/AuthContext'
@@ -67,16 +67,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
-        <Route
-          path='/create-account'
+        {/* <Route
+          path='/SignIn'
           element={
             <PrivateRouteForSuperAdmin>
-              <CreateAccount />
+              <SignIn />
             </PrivateRouteForSuperAdmin>
           }
-        />
-
+        /> */}
+        console.log('Is superadmin?', isSuperadmin)
         <Route
           path='/settings'
           element={
@@ -85,7 +84,6 @@ const App = () => {
             </PrivateRouteForSuperAdmin>
           }
         />
-
         <Route
           path='/New-Product'
           element={
@@ -94,7 +92,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
         <Route
           path='/cart'
           element={
@@ -103,7 +100,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
         <Route
           path='/refund'
           element={
@@ -112,7 +108,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
         <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
