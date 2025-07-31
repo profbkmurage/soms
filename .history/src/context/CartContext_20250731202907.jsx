@@ -8,7 +8,7 @@ const CartContext = createContext()
 export const useCart = () => useContext(CartContext)
 
 export const CartProvider = ({ children }) => {
-  //  Load cart from localStorage on first render
+  // 🔄 Load cart from localStorage on first render
   const [cartItems, setCartItems] = useState(() => {
     const storedCart = localStorage.getItem('cartItems')
     return storedCart ? JSON.parse(storedCart) : []
