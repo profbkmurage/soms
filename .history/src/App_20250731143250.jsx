@@ -108,7 +108,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path='/reset-password' element={<ResetPassword />} />
+        ;<Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<Login />} />
       </Routes>
     </Router>

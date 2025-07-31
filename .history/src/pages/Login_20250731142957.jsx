@@ -49,12 +49,7 @@ const Login = () => {
         <button type='submit' className='btn btn-primary'>
           Login
         </button>
-        ;
-        <p className='mt-2'>
-          <a href='/reset-password' className='text-primary'>
-            Forgot Password?
-          </a>
-        </p>
+        
       </form>
     </div>
   )

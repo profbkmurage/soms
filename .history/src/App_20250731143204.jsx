@@ -7,7 +7,7 @@ import { db } from './firebase/config'
 import Login from './pages/Login'
 import CreateAccount from './components/CreateAccount'
 import Settings from './pages/settings'
-import ResetPassword from './pages/ResetPassword'
+
 
 import { useAuth } from './context/AuthContext'
 import Navbar from './components/Navbar'
@@ -68,6 +68,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path='/create-account'
           element={
@@ -76,6 +77,7 @@ const App = () => {
             </PrivateRouteForSuperAdmin>
           }
         />
+
         <Route
           path='/settings'
           element={
@@ -84,6 +86,7 @@ const App = () => {
             </PrivateRouteForSuperAdmin>
           }
         />
+
         <Route
           path='/New-Product'
           element={
@@ -92,6 +95,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path='/cart'
           element={
@@ -100,6 +104,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path='/refund'
           element={
@@ -108,7 +113,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path='/reset-password' element={<ResetPassword />} />
+
         <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
