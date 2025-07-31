@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from './firebase/config'
 
 import Login from './pages/Login'
-import SignIn from 'pages/SignIn'
+import Sign from 'pages/SignIn'
 import Settings from './pages/settings'
 
 import { useAuth } from './context/AuthContext'
@@ -67,10 +67,10 @@ const App = () => {
           }
         />
         <Route
-          path='/SignIn'
+          path='/signUp'
           element={
             <PrivateRouteForSuperAdmin>
-              <SignIn />
+              <SignUp />
             </PrivateRouteForSuperAdmin>
           }
         />

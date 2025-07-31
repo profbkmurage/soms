@@ -1,12 +1,12 @@
-// src/components/SignIn.jsx
+// src/components/SignUp.jsx
 import React, { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { db } from '../firebase/config'
 import { doc, setDoc } from 'firebase/firestore'
 
-const SignIn = () => {
-  const { SignIn } = useAuth()
+const SignUp = () => {
+  const { signup } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState('cashier') // default role
@@ -17,7 +17,7 @@ const SignIn = () => {
     e.preventDefault()
     setError('')
     try {
-      const userCredential = await SignIn(email, password)
+      const userCredential = await signup(email, password)
       const user = userCredential.user
 
       // Save the user to Firestore
@@ -80,4 +80,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignUp

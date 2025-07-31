@@ -67,10 +67,10 @@ const App = () => {
           }
         />
         <Route
-          path='/SignIn'
+          path='/signUp'
           element={
             <PrivateRouteForSuperAdmin>
-              <SignIn />
+              <SignUp />
             </PrivateRouteForSuperAdmin>
           }
         />
