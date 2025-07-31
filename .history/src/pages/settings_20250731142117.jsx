@@ -28,6 +28,7 @@ const Settings = () => {
     const worksheet = XLSX.utils.json_to_sheet(data, { origin: 'A2' })
     XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: 'A1' })
 
+    // Bold header row
     const range = XLSX.utils.decode_range(worksheet['!ref'])
     for (let col = range.s.c; col <= range.e.c; col++) {
       const cell = XLSX.utils.encode_cell({ r: 0, c: col })
@@ -129,7 +130,7 @@ const Settings = () => {
         <h4>Users</h4>
         <button
           className='btn btn-success mb-2'
-          onClick={() => navigate('/create-account')}
+          onClick={() => navigate('/')}
         >
           Create New User
         </button>
