@@ -18,11 +18,7 @@ const CreateAccount = () => {
 
     try {
       // ✅ CREATE NEW USER
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      )
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       const user = userCredential.user
 
       // ✅ SAVE USER TO FIRESTORE
