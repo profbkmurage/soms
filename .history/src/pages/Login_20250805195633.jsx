@@ -16,8 +16,7 @@ const Login = () => {
       await login(email, password)
       navigate('/') // Redirect to homepage
     } catch (err) {
-      setError('Check your credentials well.')
-      alert(err)
+      setError('Invalid email or password.')
     }
   }
 
@@ -30,7 +29,7 @@ const Login = () => {
         <h3 className='text-center mb-3 text-primary fw-bold'>
           China Garden Supermarket
         </h3>
-        <h5 className='text-center mb-4'>User Login</h5>
+        <h5 className='text-center mb-4'>Admin Login</h5>
 
         {error && <div className='alert alert-danger'>{error}</div>}
 

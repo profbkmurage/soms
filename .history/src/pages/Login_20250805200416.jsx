@@ -16,7 +16,7 @@ const Login = () => {
       await login(email, password)
       navigate('/') // Redirect to homepage
     } catch (err) {
-      setError('Check your credentials well.')
+      setError(err)
       alert(err)
     }
   }
