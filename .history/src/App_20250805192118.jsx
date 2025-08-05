@@ -14,7 +14,7 @@ import Navbar from './components/Navbar'
 import Product from './components/Product'
 import ProductList from './components/ProductList'
 import Cart from './components/Cart'
-import RefundMode from './components/RefundMode'
+import RefundPage from './components/RefundMode'
 import ProtectedRoute from './routes/ProtectedRoute'
 import PrivateRouteForSuperAdmin from './components/PrivateRouteForSuperAdmin'
 

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { getDoc, doc, updateDoc, collection, addDoc } from 'firebase/firestore'
 import { db } from '../firebase/config'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext' // <-- you need a custom AuthContext for this
 
 const RefundMode = () => {
   const [receiptId, setReceiptId] = useState('')
   const [receiptData, setReceiptData] = useState(null)
   const [refundQuantities, setRefundQuantities] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const { currentUser } = useAuth()
+  const { currentUser } = useAuth() // assuming you're using a custom hook
 
   const [userRole, setUserRole] = useState(null)
 
@@ -31,10 +31,7 @@ const RefundMode = () => {
       const receiptRef = doc(db, 'receipts', receiptId)
       const receiptSnap = await getDoc(receiptRef)
 
-      if (!receiptSnap.exists()) {
-        alert('Receipt not found')
-        setReceiptData(null)
-      } else {
+      if (receiptSnap.exists()) {
         const data = receiptSnap.data()
         if (data.refunded) {
           alert('This receipt has already been refunded.')
@@ -43,6 +40,8 @@ const RefundMode = () => {
           setReceiptData(data)
           setRefundQuantities({})
         }
+      } else {
+        alert('Receipt not found')
       }
     } catch (error) {
       console.error('Error fetching receipt:', error)
@@ -77,24 +76,11 @@ const RefundMode = () => {
     }
 
     try {
+      // ✅ Prevent double refund
       const receiptRef = doc(db, 'receipts', receiptId)
-      const latestReceiptSnap = await getDoc(receiptRef)
-
-      // 🔐 Double-check the receipt hasn't been refunded already
-      if (!latestReceiptSnap.exists()) {
-        alert('Receipt no longer exists.')
-        return
-      }
-
-      const latestData = latestReceiptSnap.data()
-      if (latestData.refunded) {
-        alert('This receipt has already been refunded by someone else.')
-        setReceiptData(null)
-        return
-      }
-
-      // ✅ Lock the receipt before doing other writes
-      await updateDoc(receiptRef, { refunded: true })
+      await updateDoc(receiptRef, {
+        refunded: true
+      })
 
       for (let item of refundItems) {
         const { productId, refundQty } = item
@@ -120,12 +106,12 @@ const RefundMode = () => {
         }
       }
 
-      // Log the refund
+      // Log refund
       await addDoc(collection(db, 'refunds'), {
         receiptId,
         refundedItems: refundItems,
         timestamp: new Date(),
-        userId: currentUser?.uid || 'unknown'
+        userId: currentUser.uid
       })
 
       alert('Refund processed successfully.')
@@ -138,7 +124,7 @@ const RefundMode = () => {
     }
   }
 
-  // 🔐 Access control
+  // 🔒 Show nothing if not superadmin
   if (userRole !== 'superadmin') {
     return (
       <div className='container mt-5 text-center'>
