@@ -1,0 +1,10 @@
+{
+  "addStockFor": "添加库存: {{productName}}",
+  "storeStockToAdd": "添加仓库库存",
+  "shopStockToAdd": "添加商店库存",
+  "cancel": "取消",
+  "updating": "更新中...",
+  "addStock": "添加库存",
+  "stockUpdatedSuccess": "库存更新成功。",
+  "stockUpdatedFail": "库存更新失败。"
+}

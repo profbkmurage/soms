@@ -1,0 +1,13 @@
+{
+  "addStockFor": "Add Stock for: {{productName}}",
+  "storeStockToAdd": "Store Stock to Add",
+  "shopStockToAdd": "Shop Stock to Add",
+  "cancel": "Cancel",
+  "updating": "Updating...",
+  "addStock": "Add Stock",
+  "stockUpdatedSuccess": "Stock updated successfully.",
+  "stockUpdatedFail": "Failed to update stock.",
+
+  // cart
+
+}
