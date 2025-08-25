@@ -4,7 +4,7 @@ import { db } from '../firebase/config'
 import ProductCard from './ProductCard'
 import { getAuth } from 'firebase/auth'
 import { useTranslation } from 'react-i18next'
-import { Tab, Nav, Row, Col } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 
 const ProductList = ({ editMode, addStockMode }) => {
   const { t } = useTranslation()
@@ -18,14 +18,14 @@ const ProductList = ({ editMode, addStockMode }) => {
 
   const auth = getAuth()
 
-  // categories for tabs (translated)
+  // categories for tabs
   const categories = [
     { value: 'all', label: t('allCategories') },
     { value: 'snacks', label: t('categorySnacks') },
     { value: 'sauces', label: t('categorySauces') },
     { value: 'local products', label: t('categoryLocalProducts') },
-    { value: 'vegetables', label: t('categoryVegetables') },
-    { value: 'fruits', label: t('categoryFruits') },
+    { value: 'Vegetables', label: t('categoryVegetables') },
+    { value: 'Fruits', label: t('categoryFruits') },
     { value: 'beverage', label: t('categoryBeverage') },
     { value: 'frozen products', label: t('categoryFrozenProducts') }
   ]
@@ -113,51 +113,43 @@ const ProductList = ({ editMode, addStockMode }) => {
         </div>
       </div>
 
-      {/* Category Tabs (Bootstrap) */}
-      <Tab.Container activeKey={activeCategory} onSelect={setActiveCategory}>
-        <Row>
-          <Col>
-            <Nav
-              variant='tabs'
-              className='mb-4 justify-content-center flex-wrap'
+      {/* Category Tabs */}
+      <Nav
+        variant='tabs'
+        activeKey={activeCategory}
+        className='mb-4 justify-content-center'
+      >
+        {categories.map(cat => (
+          <Nav.Item key={cat.value}>
+            <Nav.Link
+              eventKey={cat.value}
+              onClick={() => setActiveCategory(cat.value)}
             >
-              {categories.map(cat => (
-                <Nav.Item key={cat.value}>
-                  <Nav.Link eventKey={cat.value}>{cat.label}</Nav.Link>
-                </Nav.Item>
-              ))}
-            </Nav>
-          </Col>
-        </Row>
+              {cat.label}
+            </Nav.Link>
+          </Nav.Item>
+        ))}
+      </Nav>
 
-        <Row>
-          <Col>
-            <Tab.Content>
-              <Tab.Pane eventKey={activeCategory}>
-                {/* Products */}
-                {displayedProducts.length > 0 ? (
-                  <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4'>
-                    {displayedProducts.map(product => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        editMode={editMode && role !== 'company'}
-                        addStockMode={addStockMode && role !== 'company'}
-                        refreshProducts={fetchProducts}
-                        role={role}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className='text-center mt-4'>
-                    <h5 className='text-muted'>{t('noProductsMatch')}</h5>
-                  </div>
-                )}
-              </Tab.Pane>
-            </Tab.Content>
-          </Col>
-        </Row>
-      </Tab.Container>
+      {/* Products */}
+      {displayedProducts.length > 0 ? (
+        <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4'>
+          {displayedProducts.map(product => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              editMode={editMode && role !== 'company'}
+              addStockMode={addStockMode && role !== 'company'}
+              refreshProducts={fetchProducts}
+              role={role}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className='text-center mt-4'>
+          <h5 className='text-muted'>{t('noProductsMatch')}</h5>
+        </div>
+      )}
     </div>
   )
 }

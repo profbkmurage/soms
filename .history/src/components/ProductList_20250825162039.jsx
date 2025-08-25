@@ -4,7 +4,6 @@ import { db } from '../firebase/config'
 import ProductCard from './ProductCard'
 import { getAuth } from 'firebase/auth'
 import { useTranslation } from 'react-i18next'
-import { Tab, Nav, Row, Col } from 'react-bootstrap'
 
 const ProductList = ({ editMode, addStockMode }) => {
   const { t } = useTranslation()
@@ -14,21 +13,8 @@ const ProductList = ({ editMode, addStockMode }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [username, setUsername] = useState('')
   const [role, setRole] = useState('')
-  const [activeCategory, setActiveCategory] = useState('all')
 
   const auth = getAuth()
-
-  // categories for tabs (translated)
-  const categories = [
-    { value: 'all', label: t('allCategories') },
-    { value: 'snacks', label: t('categorySnacks') },
-    { value: 'sauces', label: t('categorySauces') },
-    { value: 'local products', label: t('categoryLocalProducts') },
-    { value: 'vegetables', label: t('categoryVegetables') },
-    { value: 'fruits', label: t('categoryFruits') },
-    { value: 'beverage', label: t('categoryBeverage') },
-    { value: 'frozen products', label: t('categoryFrozenProducts') }
-  ]
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -75,12 +61,12 @@ const ProductList = ({ editMode, addStockMode }) => {
     }
   }
 
-  // apply category filter
-  const displayedProducts = filteredProducts.filter(p =>
-    activeCategory === 'all'
-      ? true
-      : (p.category || '').toLowerCase() === activeCategory.toLowerCase()
-  )
+  const groupedProducts = filteredProducts.reduce((acc, product) => {
+    const category = product.category || t('uncategorized')
+    if (!acc[category]) acc[category] = []
+    acc[category] = [...acc[category], product]
+    return acc
+  }, {})
 
   return (
     <div className='container mt-5'>
@@ -94,7 +80,6 @@ const ProductList = ({ editMode, addStockMode }) => {
         </div>
       )}
 
-      {/* Search */}
       <div className='row justify-content-center mb-4'>
         <div className='col-md-8'>
           <div className='input-group shadow-sm'>
@@ -113,51 +98,29 @@ const ProductList = ({ editMode, addStockMode }) => {
         </div>
       </div>
 
-      {/* Category Tabs (Bootstrap) */}
-      <Tab.Container activeKey={activeCategory} onSelect={setActiveCategory}>
-        <Row>
-          <Col>
-            <Nav
-              variant='tabs'
-              className='mb-4 justify-content-center flex-wrap'
-            >
-              {categories.map(cat => (
-                <Nav.Item key={cat.value}>
-                  <Nav.Link eventKey={cat.value}>{cat.label}</Nav.Link>
-                </Nav.Item>
+      {Object.keys(groupedProducts).length > 0 ? (
+        Object.entries(groupedProducts).map(([category, items]) => (
+          <div key={category} className='mb-5'>
+            <h5 className='text-muted border-bottom pb-2 mb-3'>{category}</h5>
+            <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4'>
+              {items.map(product => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  editMode={editMode && role !== 'company'}
+                  addStockMode={addStockMode && role !== 'company'}
+                  refreshProducts={fetchProducts}
+                  role={role}
+                />
               ))}
-            </Nav>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <Tab.Content>
-              <Tab.Pane eventKey={activeCategory}>
-                {/* Products */}
-                {displayedProducts.length > 0 ? (
-                  <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4'>
-                    {displayedProducts.map(product => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        editMode={editMode && role !== 'company'}
-                        addStockMode={addStockMode && role !== 'company'}
-                        refreshProducts={fetchProducts}
-                        role={role}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className='text-center mt-4'>
-                    <h5 className='text-muted'>{t('noProductsMatch')}</h5>
-                  </div>
-                )}
-              </Tab.Pane>
-            </Tab.Content>
-          </Col>
-        </Row>
-      </Tab.Container>
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className='text-center mt-4'>
+          <h5 className='text-muted'>{t('noProductsMatch')}</h5>
+        </div>
+      )}
     </div>
   )
 }
