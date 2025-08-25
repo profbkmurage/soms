@@ -167,6 +167,13 @@
   "completePayment": "完成付款",
 
   "allCategories": "全部",
+  "categorySnacks": "零食",
+  "categorySauces": "酱料",
+  "categoryLocalProducts": "本地产品",
+  "categoryVegetables": "蔬菜",
+  "categoryFruits": "水果",
+  "categoryBeverage": "饮料",
+  "categoryFrozenProducts": "冷冻产品"
 
   "pendingPayments": "待付款",
   "deliveryDate": "送货日期",

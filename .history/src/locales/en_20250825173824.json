@@ -100,6 +100,13 @@
   "amountToPay": "Amount to Pay",
 
   "allCategories": "All",
+  "categorySnacks": "Snacks",
+  "categorySauces": "Sauces",
+  "categoryLocalProducts": "Local Products",
+  "categoryVegetables": "Vegetables",
+  "categoryFruits": "Fruits",
+  "categoryBeverage": "Beverages",
+  "categoryFrozenProducts": "Frozen Products"
 
 
    "pendingPayments": "Pending Payments",
